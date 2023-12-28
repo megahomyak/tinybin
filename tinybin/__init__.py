@@ -2,13 +2,7 @@ from typing import Annotated
 import secrets
 from fastapi import FastAPI, Form, status
 from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse
-from argparse import ArgumentParser
 from pathlib import Path
-
-parser = ArgumentParser()
-parser.add_argument("--host", required=True)
-parser.add_argument("--port", type=int, required=True)
-args = parser.parse_args()
 
 TEXTS_DIR = Path("texts").resolve()
 
