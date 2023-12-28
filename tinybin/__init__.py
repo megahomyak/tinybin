@@ -1,19 +1,22 @@
 from typing import Annotated
 import secrets
 from fastapi import FastAPI, Form, status
-from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse
+from fastapi.responses import FileResponse, PlainTextResponse, RedirectResponse
 from pathlib import Path
 
+SELF_DIR = Path(__file__).parent
+
 TEXTS_DIR = Path("texts").resolve()
+TEXTS_DIR.mkdir(exist_ok=True)
 
 api = FastAPI()
 
 def new_name():
-    return secrets.token_urlsafe(nbytes=16)
+    return secrets.token_urlsafe(nbytes=16) + ".txt"
 
 @api.get("/")
 def send_root():
-    return HTMLResponse("index.html")
+    return FileResponse(SELF_DIR/"index.html")
 
 @api.post("/texts/")
 def share(text: Annotated[str, Form()]):
@@ -22,7 +25,7 @@ def share(text: Annotated[str, Form()]):
         f.write(text)
     return RedirectResponse(
         url=f"/texts/{name}",
-        status_code=status.HTTP_307_TEMPORARY_REDIRECT,
+        status_code=status.HTTP_302_FOUND,
     )
 
 @api.get("/texts/{name}")

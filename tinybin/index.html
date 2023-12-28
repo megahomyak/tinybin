@@ -1,11 +1,23 @@
 <html>
     <head>
         <style>
+            html {
+                height: 100%;
+                margin: 0px;
+            }
             body {
                 font-family: sans-serif;
+                height: 100%;
+                margin: 0px;
             }
-            input {
-                width: 100%;
+            #text_input_field {
+                flex: 2;
+            }
+            #form {
+                margin: 0px;
+                display: flex;
+                flex-flow: column;
+                column-gap: 10px;
                 height: 100%;
             }
         </style>
@@ -14,8 +26,8 @@
     <body>
         <h1>Tinybin</h1>
         <p>A small service for sharing text</p>
-        <form action="/texts/">
-            <input type="text" name="text" placeholder="Your text" />
+        <form id="form" action="/texts/" method="post">
+            <input id="text_input_field" type="text" name="text" placeholder="Your text" />
             <input type="submit" value="Share" />
         </form>
     </body>
