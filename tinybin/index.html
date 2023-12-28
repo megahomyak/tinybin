@@ -2,23 +2,22 @@
     <head>
         <style>
             html {
+                display: flex;
+                flex-direction: column;
                 height: 100%;
-                margin: 0px;
             }
             body {
-                font-family: sans-serif;
-                height: 100%;
-                margin: 0px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
             }
-            #text_input_field {
-                flex: 2;
+            #textarea {
+                flex-grow: 1;
             }
             #form {
-                margin: 0px;
                 display: flex;
-                flex-flow: column;
-                column-gap: 10px;
-                height: 100%;
+                flex-direction: column;
+                flex-grow: 1;
             }
         </style>
         <title>Tinybin</title>
@@ -27,8 +26,8 @@
         <h1>Tinybin</h1>
         <p>A small service for sharing text</p>
         <form id="form" action="/texts/" method="post">
-            <input id="text_input_field" type="text" name="text" placeholder="Your text" />
-            <input type="submit" value="Share" />
+            <textarea id="textarea" name="text" placeholder="Your text"></textarea>
+            <input id="share_button" type="submit" value="Share" />
         </form>
     </body>
 </html>
