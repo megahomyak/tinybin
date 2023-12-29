@@ -28,7 +28,7 @@ def share(text: Annotated[str, Form()]):
         status_code=status.HTTP_302_FOUND,
     )
 
-@api.get("texts/{name}")
+@api.get("/texts/{name}")
 def get_text(name: str):
     file_path = (TEXTS_DIR/name).resolve()
     if file_path.parent != TEXTS_DIR:
